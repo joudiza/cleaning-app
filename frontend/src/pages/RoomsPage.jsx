@@ -40,11 +40,9 @@ const RoomsPage = () => {
               alt="Hotel del Sitjar Logo"
               className="h-14 w-auto drop-shadow-md"
             />
-            <h1 className="text-2xl font-bold text-[#4b2e2e] uppercase tracking-wide">
-              Estado de Habitaciones
-            </h1>
+         
           </div>
-          <span className="text-[#6d4e3c] font-medium">{today}</span>
+          <span className="text-[#6d4e3c]  uppercase font-bold">{today}</span>
         </div>
 
         {/* Status */}
