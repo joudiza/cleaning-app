@@ -1,9 +1,13 @@
+from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Room, RoomStatus
 from .serializers import RoomSerializer, RoomStatusSerializer
 from rest_framework.permissions import  SAFE_METHODS, BasePermission
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
+from django.views.generic import View
+
+
 class IsAdminOrReadOnly(BasePermission):
     def has_permission(self, request, view):
         # السماح للجميع بالقراءة فقط
@@ -23,3 +27,8 @@ class RoomStatusViewSet(viewsets.ModelViewSet):
     queryset = RoomStatus.objects.all()
     serializer_class = RoomStatusSerializer
     permission_classes = [IsAdminOrReadOnly]
+
+
+class FrontendAppView(View):
+    def get(self, request):
+        return render(request, "index.html")
