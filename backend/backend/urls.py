@@ -9,11 +9,10 @@ from django.urls import path, include
 def home(request):
     return JsonResponse({"message": "Welcome to Cleaning App Backend!"})
 urlpatterns = [
+    path('', home),
  path('admin/', admin.site.urls),
     path('api/', include('rooms.urls')),
-]
-
-urlpatterns += [
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),   # login
+     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),   # login
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # refresh token
 ]
+
