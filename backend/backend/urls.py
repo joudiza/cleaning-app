@@ -2,8 +2,12 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.http import JsonResponse
 from django.contrib import admin
 from django.urls import path, include
+
+def home(request):
+    return JsonResponse({"message": "Welcome to Cleaning App Backend!"})
 urlpatterns = [
  path('admin/', admin.site.urls),
     path('api/', include('rooms.urls')),
