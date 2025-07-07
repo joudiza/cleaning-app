@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rooms_db',
-        'USER': 'postgres',         # ولا الاسم اللي كتستعملي
-        'PASSWORD': 'AhmedJoud2022@',
-        'HOST': 'localhost',
+        'NAME': 'rooms_db_3o2o',
+        'USER': 'rooms_user_joud',         # ولا الاسم اللي كتستعملي
+        'PASSWORD': 'W9AS33dtVvo08U51xjCFtLxRi5z4EgYD',
+        'HOST': 'dpg-d1m1vgi4d50c738d1ml0-a',
         'PORT': '5432',
     }
 }
