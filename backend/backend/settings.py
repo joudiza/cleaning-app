@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 from datetime import timedelta
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +26,6 @@ SECRET_KEY = 'django-insecure-m+k!d$_7gcy_@k@vsoftq)wlv%3gd7b%#ym-k)(ah5xxv1s2#d
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -153,3 +152,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", # Vite dev server
     # "https://yourfrontenddomain.com",  # Production
 ]
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
