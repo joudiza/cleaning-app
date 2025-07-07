@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
+from decouple import config
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -78,14 +80,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rooms_db_3o2o',
-        'USER': 'rooms_user_joud',         # ولا الاسم اللي كتستعملي
-        'PASSWORD': 'W9AS33dtVvo08U51xjCFtLxRi5z4EgYD',
-        'HOST': 'dpg-d1m1vgi4d50c738d1ml0-a',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.parse(config("DATABASE_URL"))
 }
 
 
