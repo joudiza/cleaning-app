@@ -80,7 +80,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(config("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'rooms_db',  # مثلاً rooms_local
+        'USER': 'postgres',
+        'PASSWORD': 'AhmedJoud2022@',  # كلمة السر ديال المستخدم
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 

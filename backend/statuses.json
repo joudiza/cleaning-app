@@ -1,0 +1,23 @@
+[
+  {
+    "model": "rooms.roomstatus",
+    "pk": 1,
+    "fields": {
+      "name": "clean"
+    }
+  },
+  {
+    "model": "rooms.roomstatus",
+    "pk": 2,
+    "fields": {
+      "name": "dirty"
+    }
+  },
+  {
+    "model": "rooms.roomstatus",
+    "pk": 3,
+    "fields": {
+      "name": "Being cleaned"
+    }
+  }
+]

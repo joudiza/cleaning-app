@@ -1,0 +1,18 @@
+[
+  {
+    "model": "rooms.room",
+    "pk": 1,
+    "fields": {
+      "number": "101",
+      "status": 1  
+    }
+  },
+  {
+    "model": "rooms.room",
+    "pk": 2,
+    "fields": {
+      "number": "102",
+      "status": 2
+    }
+  }
+]
