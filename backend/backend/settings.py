@@ -61,7 +61,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'backend', 'frontend', 'dist', 'assets'),],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -153,10 +153,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend', 'dist'),  # ← هنا الملفات ديال React
+    BASE_DIR / 'frontend/dist',
 ]
 
 TEMPLATES[0]["DIRS"] = [
-    os.path.join(BASE_DIR, "frontend", "dist")
+    BASE_DIR / "templates"
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
