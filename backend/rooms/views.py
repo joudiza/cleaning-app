@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Room, RoomStatus
@@ -6,6 +7,8 @@ from rest_framework.permissions import  SAFE_METHODS, BasePermission
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
 from django.views.generic import View
+from django.conf import settings
+import os
 
 
 class IsAdminOrReadOnly(BasePermission):
@@ -28,7 +31,10 @@ class RoomStatusViewSet(viewsets.ModelViewSet):
     serializer_class = RoomStatusSerializer
     permission_classes = [IsAdminOrReadOnly]
 
-
 class FrontendAppView(View):
     def get(self, request):
-        return render(request, "index.html")
+        try:
+            with open(os.path.join(settings.BASE_DIR, 'frontend', 'dist', 'index.html')) as f:
+                return HttpResponse(f.read())
+        except FileNotFoundError:
+            return HttpResponse("index.html not found", status=501)
