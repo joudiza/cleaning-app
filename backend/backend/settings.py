@@ -15,7 +15,7 @@ import os
 from decouple import config
 import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 
@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-m+k!d$_7gcy_@k@vsoftq)wlv%3gd7b%#ym-k)(ah5xxv1s2#d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['cleaning-app-58pg.onrender.com']
 
 # Application definition
 
@@ -61,7 +61,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+          'DIRS': [],  # ✅ خليه فارغ
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,7 +134,6 @@ SIMPLE_JWT = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -150,12 +149,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 STATICFILES_DIRS = [
-    BASE_DIR / "frontend" / "dist"
+    BASE_DIR / 'frontend' / 'dist'
 ]
-
-TEMPLATES[0]["DIRS"] = [
-    BASE_DIR / "templates"
-]
+STATIC_ROOT = BASE_DIR / 'backend' / 'staticfiles'
