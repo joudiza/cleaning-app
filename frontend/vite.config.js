@@ -1,15 +1,21 @@
+
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-import tailwindcss from '@tailwindcss/vite'
-
-// https://vite.dev/config/
+// ✅ هادي هي المهمة
 export default defineConfig({
-  plugins: [react(),tailwindcss(),
-   
-],
- server: {
+  plugins: [react()],
+  base: '/static/', // ⬅️ ضروري هادي باش مايديرش /assets/ مباشرة
+  build: {
+    outDir: '../frontend/dist',
+    emptyOutDir: true,
+    manifest: true,
+    rollupOptions: {
+      input: './index.html',
+    },
+  },
+   server: {
     port: 3000, // ✅ هنا صحيح
   }
-  
 })
