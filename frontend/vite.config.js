@@ -1,21 +1,18 @@
-
-
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// ✅ هادي هي المهمة
 export default defineConfig({
   plugins: [react()],
-  base: '/static/', // ⬅️ ضروري هادي باش مايديرش /assets/ مباشرة
+  base: '/static/', // ✅ مهم بزاف فـ الإنتاج باش static files يخدمو مع Django
   build: {
-    outDir: '../frontend/dist',
+    outDir: '../frontend/dist', // ✅ خاص يكون ف نفس المستوى مع backend/templates
     emptyOutDir: true,
-    manifest: true,
+    manifest: true, // ✅ ضروري باش Django يعرف فين الملفات
     rollupOptions: {
-      input: './index.html',
+      input: './index.html', // ✅ نقطة الدخول
     },
   },
-   server: {
-    port: 3000, // ✅ هنا صحيح
+  server: {
+    port: 3000, // ✅ dev server
   }
 })

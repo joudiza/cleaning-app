@@ -1,17 +1,18 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# ✅ 1. ندخلو لل backend
-cd backend
-
-# ✅ 2. نثبّت باكيجات البايثون
+# Install Python dependencies
 pip install -r requirements.txt
 
-# ✅ 3. نرجع نبني ال frontend
-cd ../frontend
+# Build frontend assets
+cd ../frontend || exit
 npm install
 npm run build
+cd ../backend || exit
 
-# ✅ 4. نرجع لل backend وندير collectstatic
-cd ../backend
+# Collect static files and apply migrations
 python manage.py collectstatic --noinput
 python manage.py migrate
+
+# Load fixtures
+python manage.py loaddata statuses.json
+python manage.py loaddata rooms.json
