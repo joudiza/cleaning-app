@@ -62,7 +62,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-          'DIRS': [],  # ✅ خليه فارغ
+         'DIRS': [os.path.join(BASE_DIR, 'backend', 'templates')], # ← تأكدي هادي موجودة
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,8 +150,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 STATIC_URL = '/static/'
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_DIRS = [
-    BASE_DIR / 'frontend' / 'dist'
-]
-STATIC_ROOT = BASE_DIR / 'backend' / 'staticfiles'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'backend', 'static')
+

@@ -33,8 +33,4 @@ class RoomStatusViewSet(viewsets.ModelViewSet):
 
 class FrontendAppView(View):
     def get(self, request):
-        try:
-            with open(os.path.join(settings.BASE_DIR, 'frontend', 'dist', 'index.html')) as f:
-                return HttpResponse(f.read(), content_type="text/html")
-        except FileNotFoundError:
-            return HttpResponse("index.html not found", status=501)
+        return render(request, "index.html") 
