@@ -44,7 +44,7 @@ const RoomsPage = () => {
       className="h-14 w-auto drop-shadow-md"
     />
   </div>
-  <span className="text-[#6d4e3c] uppercase font-bold">{today}</span>
+  <span className="text-[#6d4e3c] uppercase ml-4 font-bold">{today}</span>
 </div>
 
 
