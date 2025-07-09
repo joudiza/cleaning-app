@@ -36,7 +36,7 @@ const RoomsPage = () => {
 
     {/* Header */}
 {/* Header */}
-<div className="mb-8 flex justify-between items-center flex-col sm:flex-row gap-4 text-center sm:text-left">
+<div className="mb-8 flex justify-between items-center flex-col sm:flex-row gap-8 text-center sm:text-left">
   <div className="flex items-center gap-4">
     <img
       src={logo}
