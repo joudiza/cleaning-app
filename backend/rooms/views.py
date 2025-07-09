@@ -31,12 +31,11 @@ class RoomStatusViewSet(viewsets.ModelViewSet):
     serializer_class = RoomStatusSerializer
     permission_classes = [IsAdminOrReadOnly]
 
+from django.views.generic import View
+from django.shortcuts import render
+
 class FrontendAppView(View):
-    def get(self, request):
-        try:
-            # كنقولو ليه فين index.html ديال React
-            index_path = os.path.join(settings.BASE_DIR, 'backend', 'templates', 'index.html')
-            with open(index_path, encoding='utf-8') as f:
-                return HttpResponse(f.read(), content_type='text/html')
-        except FileNotFoundError:
-            return HttpResponse("index.html not found", status=501)
+    def get(self, request, resource=None):
+        return render(request, "index.html")
+
+ 
