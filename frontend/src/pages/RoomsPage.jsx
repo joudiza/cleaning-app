@@ -35,18 +35,18 @@ const RoomsPage = () => {
   <div className="max-w-7xl mx-auto bg-white/90 backdrop-blur-lg rounded-xl shadow-xl p-4 sm:p-8 border border-[#cabba9]">
 
     {/* Header */}
-    <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-      <div className="flex items-center gap-4">
-        <img
-          src={logo}
-          alt="Hotel del Sitjar Logo"
-          className="h-12 sm:h-14 w-auto drop-shadow-md"
-        />
-      </div>
-      <span className="text-[#6d4e3c] uppercase font-bold text-sm sm:text-base">
-        {today}
-      </span>
-    </div>
+{/* Header */}
+<div className="mb-8 flex justify-between items-center flex-col sm:flex-row gap-4 text-center sm:text-left">
+  <div className="flex items-center gap-4">
+    <img
+      src={logo}
+      alt="Hotel del Sitjar Logo"
+      className="h-14 w-auto drop-shadow-md"
+    />
+  </div>
+  <span className="text-[#6d4e3c] uppercase font-bold">{today}</span>
+</div>
+
 
     {/* Status */}
     {loading && <p className="text-blue-600 text-base">⏳ Loading rooms...</p>}
