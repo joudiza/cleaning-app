@@ -33,4 +33,10 @@ class RoomStatusViewSet(viewsets.ModelViewSet):
 
 class FrontendAppView(View):
     def get(self, request):
-        return render(request, "index.html") 
+        try:
+            # كنقولو ليه فين index.html ديال React
+            index_path = os.path.join(settings.BASE_DIR, 'backend', 'templates', 'index.html')
+            with open(index_path, encoding='utf-8') as f:
+                return HttpResponse(f.read(), content_type='text/html')
+        except FileNotFoundError:
+            return HttpResponse("index.html not found", status=501)
