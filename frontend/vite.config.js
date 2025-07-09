@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/static/', // ✅ مهم بزاف فـ الإنتاج باش static files يخدمو مع Django
   build: {
-    outDir: '../backend/staticfiles/assets', // ✅ خاص يكون ف نفس المستوى مع backend/templates
+    outDir: '../frontend/dist', // ✅ خاص يكون ف نفس المستوى مع backend/templates
     emptyOutDir: true,
     manifest: true, // ✅ ضروري باش Django يعرف فين الملفات
     rollupOptions: {
