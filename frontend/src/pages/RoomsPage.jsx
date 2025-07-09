@@ -6,6 +6,7 @@ import {
   updateRoomStatus,
 } from '../features/roomsSlice';
 
+import logo from '../assets/logo-color-positivo-hotel-del-sitjar.webp';
 const RoomsPage = () => {
   const dispatch = useDispatch();
   const { list: rooms, statuses, loading, error } = useSelector((state) => state.rooms);
@@ -36,7 +37,7 @@ const RoomsPage = () => {
         <div className="mb-8 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <img
-               src="/images/logo-color-positivo-hotel-del-sitjar.webp" 
+               src={logo} 
               alt="Hotel del Sitjar Logo"
               className="h-14 w-auto drop-shadow-md"
             />
