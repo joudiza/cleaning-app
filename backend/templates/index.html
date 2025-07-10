@@ -3,10 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/static/logo512.png" />
+    <link rel="manifest" href="/static/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DEL_SITJAR_ROOMS</title>
     <script type="module" crossorigin src="/static/assets/index-aNvbqj2x.js"></script>
     <link rel="stylesheet" crossorigin href="/static/assets/index-DK8V3zc1.css">
+     <!-- Service Worker Registration -->
+    <script type="module">
+      import { registerSW } from '/static/registerSW.js';
+      registerSW();
+    </script>
   </head>
   <body>
     <div id="root"></div>
