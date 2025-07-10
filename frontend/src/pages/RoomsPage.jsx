@@ -36,25 +36,32 @@ const RoomsPage = () => {
 
     {/* Header */}
 {/* Header */}
-<div className="mb-8 flex justify-between items-center flex-col sm:flex-row gap-8 text-center sm:text-left">
+<div className="mb-8 sticky top-0 z-10 bg-white/90 backdrop-blur-md rounded-t-xl shadow px-4 py-2">
   <div className="flex items-center gap-4">
-    <img
-      src={logo}
-      alt="Hotel del Sitjar Logo"
-      className="h-14 w-auto drop-shadow-md"
-    />
+    <img src={logo} alt="Hotel Logo" className="h-14 drop-shadow-lg" />
+    <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5a3e2b] drop-shadow-sm">
+      Hotel del Sitjar - Rooms
+    </h1>
   </div>
-  <span className="text-[#6d4e3c] uppercase ml-4 font-bold">{today}</span>
+  <span className="text-[#6d4e3c] text-sm sm:text-base font-semibold italic">
+    {today}
+  </span>
 </div>
 
 
+
     {/* Status */}
-    {loading && <p className="text-blue-600 text-base">⏳ Loading rooms...</p>}
+   {loading && (
+  <div className="flex items-center gap-2 text-blue-600 text-base">
+    <span className="animate-spin rounded-full h-4 w-4 border-t-2 border-blue-500"></span>
+    Loading rooms...
+  </div>
+)}
     {error && <p className="text-red-600 font-semibold">{error}</p>}
 
     {/* Table */}
     <div className="w-full overflow-x-auto rounded-xl shadow-md">
-      <table className="min-w-full text-xs sm:text-sm text-left text-gray-700">
+      <table className="min-w-full text-sm sm:text-base text-left text-gray-700">
         <thead className="text-white uppercase bg-[#2f3e46]">
           <tr>
             <th className="px-4 sm:px-6 py-3 border-r border-gray-600">Room</th>
@@ -68,25 +75,29 @@ const RoomsPage = () => {
           {rooms.map((room, index) => (
             <tr
               key={room.id}
-              className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'} hover:bg-[#f1f5f9] transition`}
+              className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'} hover:bg-[#fef6e4] transition-colors duration-300`}
+
             >
               <td className="px-4 sm:px-6 py-3 font-medium text-gray-800 border-r border-gray-200">
                 {room.number}
               </td>
 
               <td className="px-4 sm:px-6 py-3 border-r border-gray-200">
-                <span
-                  className={`inline-block w-[100px] sm:w-[120px] text-center px-2 py-1 rounded-full text-xs font-semibold
-                    ${
-                      room.status?.name?.toLowerCase() === 'clean'
-                        ? 'bg-green-500 text-white'
-                        : room.status?.name?.toLowerCase() === 'being cleaned'
-                        ? 'bg-yellow-500 text-white'
-                        : 'bg-red-500 text-white'
-                    }`}
-                >
-                  {room.status?.name}
-                </span>
+               <span
+  className={`inline-flex items-center gap-1 justify-center px-2 py-1 rounded-full text-xs font-bold tracking-wide
+    ${
+      room.status?.name?.toLowerCase() === 'clean'
+        ? 'bg-green-500 text-white'
+        : room.status?.name?.toLowerCase() === 'being cleaned'
+        ? 'bg-yellow-500 text-white'
+        : 'bg-red-500 text-white'
+    }`}
+>
+  {room.status?.name === 'clean' && '✅'}
+  {room.status?.name === 'being cleaned' && '🧼'}
+  {room.status?.name === 'dirty' && '❌'} {room.status?.name}
+</span>
+
               </td>
 
               {isAdmin && (
@@ -96,7 +107,9 @@ const RoomsPage = () => {
                     onChange={(e) =>
                       handleStatusChange(room.id, parseInt(e.target.value))
                     }
-                    className="w-full border border-gray-300 px-2 py-1 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full border border-gray-300 px-2 py-1 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-[#5a3e2b] bg-white hover:shadow"
+
+                    
                   >
                     {statuses.map((status) => (
                       <option key={status.id} value={status.id}>
