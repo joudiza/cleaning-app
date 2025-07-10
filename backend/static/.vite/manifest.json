@@ -1,0 +1,18 @@
+{
+  "index.html": {
+    "file": "assets/index-aNvbqj2x.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "css": [
+      "assets/index-DK8V3zc1.css"
+    ],
+    "assets": [
+      "assets/logo-color-positivo-hotel-del-sitjar-6b-2Cz4u.webp"
+    ]
+  },
+  "src/assets/logo-color-positivo-hotel-del-sitjar.webp": {
+    "file": "assets/logo-color-positivo-hotel-del-sitjar-6b-2Cz4u.webp",
+    "src": "src/assets/logo-color-positivo-hotel-del-sitjar.webp"
+  }
+}
