@@ -82,7 +82,7 @@ const RoomsPage = () => {
                 {room.number}
               </td>
 
-              <td className="px-4 sm:px-6 py-3 border-r border-gray-200">
+              <td className="px-4 justify-center items-center sm:px-6 py-3 border-r border-gray-200">
                <span
   className={`inline-flex items-center gap-1 justify-center px-2 py-1 rounded-full text-xs font-bold tracking-wide
     ${
@@ -95,7 +95,8 @@ const RoomsPage = () => {
 >
   {room.status?.name === 'clean' && '✅'}
   {room.status?.name === 'being cleaned' && '🧼'}
-  {room.status?.name === 'dirty' && '❌'} {room.status?.name}
+  {room.status?.name === 'dirty' && '❌'} 
+  {room.status?.name}
 </span>
 
               </td>
