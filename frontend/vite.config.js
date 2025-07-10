@@ -10,6 +10,7 @@ export default defineConfig({
         name: 'Hotel Room Status Tracker',
         short_name: 'DEL_SITJAR_ROOMS',
         start_url: '/',
+        scope: '/', 
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#000000',
