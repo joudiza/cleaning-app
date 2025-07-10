@@ -27,7 +27,7 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/static/', // ✅ مهم بزاف فـ الإنتاج باش static files يخدمو مع Django
+  base: '/', // ✅ مهم بزاف فـ الإنتاج باش static files يخدمو مع Django
   build: {
     outDir: '../frontend/dist', // ✅ خاص يكون ف نفس المستوى مع backend/templates
     emptyOutDir: true,
