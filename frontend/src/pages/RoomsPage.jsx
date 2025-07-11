@@ -79,7 +79,7 @@ const handleStatusChange = (roomId, statusId = null, is_available = null) => {
     >
       {/* Room number */}
       <td className="px-4 sm:px-6 py-3 font-medium text-gray-800 border-r border-gray-200">
-        {room.number}
+        {room.number} <h1>holla</h1>
       </td>
 
       {/* Room status */}
