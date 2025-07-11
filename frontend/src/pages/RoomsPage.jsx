@@ -24,12 +24,12 @@ const RoomsPage = () => {
   const isAdmin = localStorage.getItem('access') !== null;
 
 const handleStatusChange = (roomId, statusId = null, is_available = null) => {
+  console.log("🌀 Updating:", { roomId, statusId, is_available }); // ✅ للتأكد
   dispatch(updateRoomStatus({ roomId, statusId, is_available }))
     .unwrap()
     .then(() => dispatch(fetchRooms()))
     .catch((err) => console.error("❌ Failed to update room:", err));
 };
-
 
   return (
 <div className="p-4 sm:p-6 min-h-screen bg-gradient-to-br from-[#f9f5f0] to-[#e0d4c2]">

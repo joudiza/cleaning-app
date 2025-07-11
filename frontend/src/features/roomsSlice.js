@@ -33,16 +33,18 @@ export const updateRoomStatus = createAsyncThunk(
   async ({ roomId, statusId, is_available }, { rejectWithValue }) => {
     try {
       const payload = {};
-      if (statusId !== null) payload.status= statusId;
-      if (is_available !== null) payload.is_available = is_available;
+      if (statusId !== undefined) payload.status_id = statusId;  // ✅ يخدم كما قبل
+      if (is_available !== undefined) payload.is_available = is_available;  // ✅ الحقل الجديد
 
-      const response = await apiClient.patch(`/rooms/${roomId}/`, payload);
-      return response.data;
+      const res = await apiClient.patch(`/rooms/${roomId}/`, payload);
+      return res.data;
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      console.error("❌ Error updating room status:", err.response?.data);
+      return rejectWithValue(err.response?.data || 'Failed to update status');
     }
   }
 );
+
 
 
 
