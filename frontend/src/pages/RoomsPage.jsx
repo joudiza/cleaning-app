@@ -23,12 +23,13 @@ const RoomsPage = () => {
 
   const isAdmin = localStorage.getItem('access') !== null;
 
-  const handleStatusChange = (roomId, statusId) => {
-    dispatch(updateRoomStatus({ roomId, statusId }))
-      .unwrap()
-      .then(() => dispatch(fetchRooms()))
-      .catch((err) => console.error("❌ Failed to update room:", err));
-  };
+const handleStatusChange = (roomId, statusId = null, is_available = null) => {
+  dispatch(updateRoomStatus({ roomId, statusId, is_available }))
+    .unwrap()
+    .then(() => dispatch(fetchRooms()))
+    .catch((err) => console.error("❌ Failed to update room:", err));
+};
+
 
   return (
 <div className="p-4 sm:p-6 min-h-screen bg-gradient-to-br from-[#f9f5f0] to-[#e0d4c2]">
@@ -66,6 +67,8 @@ const RoomsPage = () => {
           <tr>
             <th className="px-4 sm:px-6 py-3 border-r border-gray-600">Room</th>
             <th className="px-4 sm:px-6 py-3 border-r border-gray-600">Status</th>
+            <th className="px-4 sm:px-6 py-3 border-r border-gray-600">Disponibilité</th>
+
             {isAdmin && (
               <th className="px-4 sm:px-6 py-3">Change</th>
             )}
@@ -105,9 +108,11 @@ const RoomsPage = () => {
                 <td className="px-4 sm:px-6 py-3">
                   <select
                     value={String(room.status?.id)}
-                    onChange={(e) =>
-                      handleStatusChange(room.id, parseInt(e.target.value))
-                    }
+   onChange={(e) =>
+  handleStatusChange(room.id, parseInt(e.target.value), room.is_available)
+}
+
+
                     className="w-full border border-gray-300 px-2 py-1 rounded-md text-xs focus:outline-none focus:ring-2 focus:ring-[#5a3e2b] bg-white hover:shadow"
 
                     
@@ -120,6 +125,31 @@ const RoomsPage = () => {
                   </select>
                 </td>
               )}
+              <td className="px-4 sm:px-6 py-3 border-r border-gray-200">
+  {isAdmin ? (
+    <select
+      value={room.is_available ? 'true' : 'false'}
+   onChange={(e) => {
+  const newAvailability = e.target.value === 'true';
+  handleStatusChange(room.id, room.status?.id, newAvailability);
+}}
+
+      className="w-full border border-gray-300 px-2 py-1 rounded-md text-xs bg-white focus:outline-none focus:ring-2 focus:ring-[#5a3e2b]"
+    >
+      <option value="true">🟢 Disponible</option>
+      <option value="false">🔴 Occupée</option>
+    </select>
+  ) : (
+    <span
+      className={`inline-block px-2 py-1 rounded-full text-xs font-bold ${
+        room.is_available ? 'bg-green-600 text-white' : 'bg-yellow-600 text-white'
+      }`}
+    >
+      {room.is_available ? 'Disponible' : 'Occupée'}
+    </span>
+  )}
+</td>
+
             </tr>
           ))}
         </tbody>

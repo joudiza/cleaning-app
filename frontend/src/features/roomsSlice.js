@@ -30,18 +30,20 @@ export const fetchStatuses = createAsyncThunk(
 // 📌 3. Update room status
 export const updateRoomStatus = createAsyncThunk(
   'rooms/updateRoomStatus',
-  async ({ roomId, statusId }, { rejectWithValue }) => {
+  async ({ roomId, statusId, is_available }, { rejectWithValue }) => {
     try {
-      const res = await apiClient.patch(`/rooms/${roomId}/`, {
-        status_id: statusId,
-      });
-      return res.data;
+      const payload = {};
+      if (statusId !== null) payload.status = statusId;
+      if (is_available !== null) payload.is_available = is_available;
+
+      const response = await apiClient.patch(`/rooms/${roomId}/`, payload);
+      return response.data;
     } catch (err) {
-      console.error("❌ Error updating room status:", err.response?.data);
-      return rejectWithValue(err.response?.data || 'Failed to update status');
+      return rejectWithValue(err.response.data);
     }
   }
 );
+
 
 
 

@@ -14,4 +14,4 @@ class RoomSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Room
-        fields = '__all__'
+        fields = ['id', 'number', 'status', 'status_id', 'is_available']
