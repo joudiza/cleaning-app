@@ -122,29 +122,31 @@ const handleStatusChange = (roomId, statusId = null, is_available = null) => {
 
 
       {/* Disponibilité */}
-      <td className="px-4 sm:px-6 py-3 border-r border-gray-200">
-        {isAdmin ? (
-          <select
-            value={room.is_available ? 'true' : 'false'}
-            onChange={(e) => {
-              const newAvailability = e.target.value === 'true';
-              handleStatusChange(room.id, room.status?.id, newAvailability);
-            }}
-            className="w-full border border-gray-300 px-2 py-1 rounded-md text-xs bg-white focus:outline-none focus:ring-2 focus:ring-[#5a3e2b]"
-          >
-            <option value="true">🟢 Disponible</option>
-            <option value="false">🔴 Occupée</option>
-          </select>
-        ) : (
-          <span
-            className={`inline-block px-2 py-1 rounded-full text-xs font-bold ${
-              room.is_available ? 'bg-green-600 text-white' : 'bg-yellow-600 text-white'
-            }`}
-          >
-            {room.is_available ? 'Disponible' : 'Occupée'}
-          </span>
-        )}
-      </td>
+<td className="px-4 sm:px-6 py-3 border-r border-gray-200">
+  {isAdmin ? (
+    <select
+      value={room.is_available ? 'true' : 'false'}
+      onChange={(e) => {
+        const newAvailability = e.target.value === 'true';
+        handleStatusChange(room.id, room.status?.id, newAvailability);
+      }}
+      className="w-full border border-gray-300 px-2 py-1 rounded-md text-xs bg-white focus:outline-none focus:ring-2 focus:ring-[#5a3e2b]"
+    >
+      <option value="true">🟢 🛏️ Disponible</option>
+      <option value="false">🔴 🚫 Occupée</option>
+    </select>
+  ) : (
+    <span
+      className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold tracking-wide ${
+        room.is_available ? 'bg-green-600 text-white' : 'bg-yellow-600 text-white'
+      }`}
+    >
+      {room.is_available ? '🟢 🛏️' : '🔴 🚫'}
+      {room.is_available ? 'Disponible' : 'Occupée'}
+    </span>
+  )}
+</td>
+
 
     </tr>
   ))}
