@@ -63,17 +63,17 @@ const handleStatusChange = (roomId, statusId = null, is_available = null) => {
     {/* Table */}
     <div className="w-full overflow-x-auto rounded-xl shadow-md">
       <table className="min-w-full text-sm sm:text-base text-left text-gray-700">
-        <thead className="text-white uppercase bg-[#2f3e46]">
-          <tr>
-            <th className="px-4 sm:px-6 py-3 border-r border-gray-600">Room</th>
-            <th className="px-4 sm:px-6 py-3 border-r border-gray-600">Status</th>
-            <th className="px-4 sm:px-6 py-3 border-r border-gray-600">Disponibilité</th>
+      <thead className="text-white uppercase bg-[#2f3e46]">
+  <tr>
+    <th className="px-4 sm:px-6 py-3 border-r border-gray-600">Room</th>
+    <th className="px-4 sm:px-6 py-3 border-r border-gray-600">Status</th>
+    {isAdmin && (
+      <th className="px-4 sm:px-6 py-3 border-r border-gray-600">Change</th>
+    )}
+    <th className="px-4 sm:px-6 py-3">Disponibilité</th>
+  </tr>
+</thead>
 
-            {isAdmin && (
-              <th className="px-4 sm:px-6 py-3">Change</th>
-            )}
-          </tr>
-        </thead>
         <tbody>
           {rooms.map((room, index) => (
             <tr
