@@ -33,7 +33,7 @@ export const updateRoomStatus = createAsyncThunk(
   async ({ roomId, statusId, is_available }, { rejectWithValue }) => {
     try {
       const payload = {};
-      if (statusId !== null) payload.status_id = statusId;
+      if (statusId !== null) payload.status= statusId;
       if (is_available !== null) payload.is_available = is_available;
 
       const response = await apiClient.patch(`/rooms/${roomId}/`, payload);
