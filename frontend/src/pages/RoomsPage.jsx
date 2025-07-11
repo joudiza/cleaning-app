@@ -68,7 +68,6 @@ const handleStatusChange = (roomId, statusId = null, is_available = null) => {
     <th className="px-4">Room</th>
     <th className="px-4">Status</th>
     <th className="px-4">Disponibilité</th> {/* ✅ هنا */}
-    {isAdmin && <th className="px-4">Change</th>}
   </tr>
 </thead>
 <tbody>
@@ -79,27 +78,48 @@ const handleStatusChange = (roomId, statusId = null, is_available = null) => {
     >
       {/* Room number */}
       <td className="px-4 sm:px-6 py-3 font-medium text-gray-800 border-r border-gray-200">
-        {room.number} <h1>holla</h1>
+        {room.number} 
       </td>
 
       {/* Room status */}
-      <td className="px-4 sm:px-6 py-3 border-r border-gray-200">
-        <span
-          className={`inline-flex items-center gap-1 justify-center px-2 py-1 rounded-full text-xs font-bold tracking-wide
-            ${
-              room.status?.name?.toLowerCase() === 'clean'
-                ? 'bg-green-500 text-white'
-                : room.status?.name?.toLowerCase() === 'being cleaned'
-                ? 'bg-yellow-500 text-white'
-                : 'bg-red-500 text-white'
-            }`}
-        >
-          {room.status?.name === 'clean' && '✅'}
-          {room.status?.name === 'being cleaned' && '🧼'}
-          {room.status?.name === 'dirty' && '❌'}
-          {room.status?.name}
-        </span>
-      </td>
+<td className="px-4 sm:px-6 py-3 border-r border-gray-200">
+  <div className="flex flex-col items-start gap-1">
+    {/* Display current status with color and icon */}
+    <span
+      className={`inline-flex items-center gap-1 justify-center px-2 py-1 rounded-full text-xs font-bold tracking-wide
+        ${
+          room.status?.name?.toLowerCase() === 'clean'
+            ? 'bg-green-500 text-white'
+            : room.status?.name?.toLowerCase() === 'being cleaned'
+            ? 'bg-yellow-500 text-white'
+            : 'bg-red-500 text-white'
+        }`}
+    >
+      {room.status?.name === 'clean' && '✅'}
+      {room.status?.name === 'being cleaned' && '🧼'}
+      {room.status?.name === 'dirty' && '❌'}
+      {room.status?.name}
+    </span>
+
+    {/* Select only for admin */}
+    {isAdmin && (
+      <select
+        value={String(room.status?.id)}
+        onChange={(e) =>
+          handleStatusChange(room.id, parseInt(e.target.value), room.is_available)
+        }
+        className="mt-1 border border-gray-300 px-2 py-1 rounded-md text-xs bg-white focus:outline-none focus:ring-2 focus:ring-[#5a3e2b]"
+      >
+        {statuses.map((status) => (
+          <option key={status.id} value={status.id}>
+            {status.name}
+          </option>
+        ))}
+      </select>
+    )}
+  </div>
+</td>
+
 
       {/* Disponibilité */}
       <td className="px-4 sm:px-6 py-3 border-r border-gray-200">
@@ -126,24 +146,6 @@ const handleStatusChange = (roomId, statusId = null, is_available = null) => {
         )}
       </td>
 
-      {/* Change status */}
-      {isAdmin && (
-        <td className="px-4 sm:px-6 py-3">
-          <select
-            value={String(room.status?.id)}
-            onChange={(e) =>
-              handleStatusChange(room.id, parseInt(e.target.value), room.is_available)
-            }
-            className="w-full border border-gray-300 px-2 py-1 rounded-md text-xs bg-white focus:outline-none focus:ring-2 focus:ring-[#5a3e2b] hover:shadow"
-          >
-            {statuses.map((status) => (
-              <option key={status.id} value={status.id}>
-                {status.name}
-              </option>
-            ))}
-          </select>
-        </td>
-      )}
     </tr>
   ))}
 </tbody>
