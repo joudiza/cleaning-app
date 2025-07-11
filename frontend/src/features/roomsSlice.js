@@ -81,11 +81,11 @@ const roomsSlice = createSlice({
       // update room status
 .addCase(updateRoomStatus.fulfilled, (state, action) => {
   const updatedRoom = action.payload;
-  const index = state.list.findIndex(room => room.id === updatedRoom.id);
+  const index = state.list.findIndex(r => r.id === updatedRoom.id);
   if (index !== -1) {
-    state.list[index] = updatedRoom; // تحديث مباشر للغرفة
+    state.list[index] = updatedRoom;  // ✅ update room in place
   }
-});
+})
         
   },
 });

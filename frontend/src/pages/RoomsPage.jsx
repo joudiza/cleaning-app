@@ -10,7 +10,7 @@ import logo from '../assets/logo-color-positivo-hotel-del-sitjar.webp';
 const RoomsPage = () => {
   const dispatch = useDispatch();
   const { list: rooms, statuses, loading, error } = useSelector((state) => state.rooms);
-
+  console.log("✅ rooms:", rooms);
   const date = new Date();
   const days = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
 
