@@ -16,10 +16,19 @@ const RoomsPage = () => {
 
   const today = `${days[date.getDay()]} ${date.toLocaleDateString()}`;
 
-  useEffect(() => {
-    dispatch(fetchRooms());
-    dispatch(fetchStatuses());
-  }, [dispatch]);
+useEffect(() => {
+  dispatch(fetchStatuses()); // مرة وحدة
+}, [dispatch]);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    dispatch(fetchRooms()); // كل 10 ثواني
+  }, 10000);
+
+  return () => clearInterval(interval);
+}, [dispatch]);
+
+
 
   const isAdmin = localStorage.getItem('access') !== null;
 
