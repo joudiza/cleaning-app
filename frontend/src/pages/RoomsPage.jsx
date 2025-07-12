@@ -5,7 +5,7 @@ import {
   fetchStatuses,
   updateRoomStatus,
 } from '../features/roomsSlice';
-
+import { useLocation } from 'react-router-dom';
 import logo from '../assets/logo-color-positivo-hotel-del-sitjar.webp';
 const RoomsPage = () => {
   const dispatch = useDispatch();
@@ -16,17 +16,18 @@ const RoomsPage = () => {
 
   const today = `${days[date.getDay()]} ${date.toLocaleDateString()}`;
 
-useEffect(() => {
-  dispatch(fetchStatuses()); // مرة وحدة
-}, [dispatch]);
+const location = useLocation();
 
 useEffect(() => {
-  const interval = setInterval(() => {
-    dispatch(fetchRooms()); // كل 10 ثواني
-  }, 10000);
+  if (location.pathname === '/rooms') {
+    const interval = setInterval(() => {
+      dispatch(fetchRooms());
+      dispatch(fetchStatuses());
+    }, 10000);
+    return () => clearInterval(interval);
+  }
+}, [dispatch, location.pathname]);
 
-  return () => clearInterval(interval);
-}, [dispatch]);
 
 
 

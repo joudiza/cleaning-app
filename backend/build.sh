@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e  # ❗إذا وقعات شي غلطة ف أي أمر، السكريبت يوقف
+set -e  # ❗يوقف السكريبت إذا وقعات شي غلطة
 
 # ✅ 1. Install Python dependencies
 echo "🔧 Installing Python dependencies..."
@@ -12,17 +12,22 @@ cd ../frontend || exit 1
 npm install
 npm run build
 
-# ✅ 3. Back to backend
+# ✅ 3. Copy frontend build to backend
+echo "📁 Copying assets to backend..."
+cp -r dist/assets ../backend/static/assets
+cp dist/index.html ../backend/templates/index.html
+
+# ✅ 4. Back to backend
 cd ../backend || exit 1
 
-# ✅ 4. Collect static & run migrations
+# ✅ 5. Collect static & run migrations
 echo "🗂️ Collecting static files..."
 python manage.py collectstatic --noinput
 
 echo "📦 Applying database migrations..."
 python manage.py migrate
 
-# ✅ 5. Load fixtures (if needed)
+# ✅ 6. Load fixtures (optional)
 echo "🗃️ Loading fixtures..."
 python manage.py loaddata statuses.json || echo "⚠️ Skipped statuses.json (not found)"
 python manage.py loaddata rooms.json || echo "⚠️ Skipped rooms.json (not found)"
